@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendario CECyTEO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>📘 Calendario CECyTEO</h1>
+      <button type="button" class="cerrar-btn">🔒 Cerrar sesión</button>
+    </header>
+
+    <div class="calendario">
+      <div class="mes-control">
+        <button type="button" onclick="cambiarMes(-1)">←</button>
+        <h2 id="mesAnio"></h2>
+        <button type="button" onclick="cambiarMes(1)">→</button>
+      </div>
+      <div class="dias-semana">
+        <span>D</span><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span>
+      </div>
+      <div class="dias" id="dias"></div>
+    </div>
+
+    <section class="eventos">
+      <h3>📅 Próximos eventos</h3>
+      <ul id="lista-eventos"></ul>
+    </section>
+
+    <section class="nuevo-evento">
+      <h3>➕ Agregar nuevo evento</h3>
+      <form id="form-evento" autocomplete="off">
+        <input type="text" id="titulo" placeholder="Título del evento" required>
+
+        <input type="date" id="fecha" required>
+        <input type="time" id="hora" required>
+
+        <!-- Descripción del evento -->
+        <textarea id="descripcion" placeholder="Descripción del evento (opcional)" rows="3"></textarea>
+
+        
+        <!-- Color del evento -->
+        <select id="color" required>
+          <option value="">Selecciona un color</option>
+          <option value="azul">Azul</option>
+          <option value="amarillo">Amarillo</option>
+          <option value="verde">Verde</option>
+          <option value="morado">Morado</option>
+        </select>
+
+        <button type="submit">💾 Guardar evento</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

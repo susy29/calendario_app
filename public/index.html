@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendario App - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <h1>📅 Calendario CECyTEO</h1>
+    <div class="login-tabs">
+      <button onclick="cambiarFormulario('login')">Iniciar Sesión</button>
+      <button onclick="cambiarFormulario('registro')">Registrarse</button>
+    </div>
+
+    <form id="form-login" class="login-form">
+      <input type="text" placeholder="Usuario" id="usuario-login" required>
+      <input type="password" placeholder="Contraseña" id="contrasena-login" required>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <form id="form-registro" class="login-form oculto">
+      <input type="text" placeholder="Nuevo usuario" id="usuario-registro" required>
+      <input type="password" placeholder="Nueva contraseña" id="contrasena-registro" required>
+      <button type="submit">Crear cuenta</button>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("form-login");
+    const registroForm = document.getElementById("form-registro");
+
+    function cambiarFormulario(tipo) {
+      if (tipo === 'login') {
+        loginForm.classList.remove('oculto');
+        registroForm.classList.add('oculto');
+      } else {
+        loginForm.classList.add('oculto');
+        registroForm.classList.remove('oculto');
+      }
+    }
+
+    loginForm.addEventListener("submit", e => {
+      e.preventDefault();
+      // Simulación: si el usuario es correcto, redirigir
+      const usuario = document.getElementById("usuario-login").value;
+      const pass = document.getElementById("contrasena-login").value;
+      if (usuario && pass) {
+        localStorage.setItem("usuario", usuario);
+        window.location.href = "calendar.html";
+      }
+    });
+
+    registroForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const nuevoUsuario = document.getElementById("usuario-registro").value;
+      const nuevaPass = document.getElementById("contrasena-registro").value;
+      if (nuevoUsuario && nuevaPass) {
+        alert("Cuenta creada correctamente ✅\nAhora puedes iniciar sesión");
+        cambiarFormulario('login');
+      }
+    });
+  </script>
+</body>
+</html>
