@@ -2,21 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Calendario CECyTEO</title>
+  <title>Agenda Personal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app">
     <header>
-      <h1>📘 Calendario CECyTEO</h1>
-      <button type="button" class="cerrar-btn">🔒 Cerrar sesión</button>
+      <h1>📘 Agenda Personal</h1>
+      <div class="usuario-dropdown">
+        <span id="usuario-nombre" class="usuario-nombre">👤 Usuario</span>
+        <div class="menu-usuario" id="menu-usuario">
+          <button class="cerrar-btn">🔒 Cerrar sesión</button>
+        </div>
+      </div>
     </header>
 
     <div class="calendario">
       <div class="mes-control">
-        <button type="button" onclick="cambiarMes(-1)">←</button>
+        <button onclick="cambiarMes(-1)">←</button>
         <h2 id="mesAnio"></h2>
-        <button type="button" onclick="cambiarMes(1)">→</button>
+        <button onclick="cambiarMes(1)">→</button>
       </div>
       <div class="dias-semana">
         <span>D</span><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span>
@@ -31,25 +36,50 @@
 
     <section class="nuevo-evento">
       <h3>➕ Agregar nuevo evento</h3>
-      <form id="form-evento" autocomplete="off">
-        <input type="text" id="titulo" placeholder="Título del evento" required>
-
-        <input type="date" id="fecha" required>
-        <input type="time" id="hora" required>
-
-        <!-- Descripción del evento -->
-        <textarea id="descripcion" placeholder="Descripción del evento (opcional)" rows="3"></textarea>
-
+      <form id="form-evento" enctype="multipart/form-data">
+        <input type="text" id="titulo" name="titulo" placeholder="Título del evento" required>
+        <label for="fecha">Fecha</label>
+        <input 
+          type="date" 
+          id="fecha" 
+          name="fecha" 
+          required 
+          style="
+            width: 100%; 
+            padding: 12px; 
+            font-size: 16px; 
+            -webkit-appearance: none; 
+            appearance: none;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+          "
+        >
         
-        <!-- Color del evento -->
-        <select id="color" required>
+        <label for="hora">Hora</label>
+        <input 
+          type="time" 
+          id="hora" 
+          name="hora" 
+          required 
+          style="
+            width: 100%; 
+            padding: 12px; 
+            font-size: 16px; 
+            -webkit-appearance: none; 
+            appearance: none;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+          "
+        >
+        <textarea id="descripcion" name="descripcion" placeholder="Descripción del evento (opcional)" rows="3"></textarea>
+        <select id="color" name="color" required>
           <option value="">Selecciona un color</option>
           <option value="azul">Azul</option>
           <option value="amarillo">Amarillo</option>
           <option value="verde">Verde</option>
           <option value="morado">Morado</option>
         </select>
-
+        <input type="file" id="archivo" name="archivo" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg">
         <button type="submit">💾 Guardar evento</button>
       </form>
     </section>
